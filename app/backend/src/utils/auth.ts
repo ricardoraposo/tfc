@@ -13,7 +13,10 @@ export function signToken(payload: Payload) {
 }
 
 export function verifyToken(token: string) {
-  const payload = jwt.verify(token, secret) as Payload;
-  return payload;
+  try {
+    const payload = jwt.verify(token, secret) as Payload;
+    return payload;
+  } catch {
+    return null;
+  }
 }
-
