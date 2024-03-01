@@ -25,4 +25,13 @@ export default class LoginService {
 
     return { status: httpCode.ok, data: { token } };
   }
+
+  async getUserRole(id: string) {
+    const user = await this.userRepository.getUserById(id);
+    if (!user) {
+      return { status: httpCode.unauthorized, data: { message: 'User not found' } };
+    }
+
+    return { status: httpCode.ok, data: { role: user.role } };
+  }
 }
