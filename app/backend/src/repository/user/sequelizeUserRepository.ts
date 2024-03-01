@@ -12,4 +12,12 @@ export default class SequelizeUserRepository implements UserRepository {
     const user = result.dataValues;
     return user;
   }
+
+  async getUserById(id: string): Promise<User | null> {
+    const result = await this.userModel.findByPk(id);
+    if (!result) return null;
+
+    const user = result.dataValues;
+    return user;
+  }
 }
