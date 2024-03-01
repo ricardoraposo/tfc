@@ -18,7 +18,7 @@ describe('Teams integration tests', function() {
     sinon.restore();
   });
 
-  it('should return all teams', async function() {
+  it('should return all teams and status 200', async function() {
     sinon.stub(TeamModel, 'findAll').resolves(TeamModel.bulkBuild([teamMock]));
 
     const res = await chai.request(app).get('/teams');
@@ -26,4 +26,13 @@ describe('Teams integration tests', function() {
     expect(res.status).to.equal(httpCode.ok);
     expect(res.body).to.deep.equal([teamMock]);
   });
+
+  it('should return a team by id', async function() {
+    sinon.stub(TeamModel, 'findByPk').resolves(TeamModel.build(teamMock));
+
+    const res = await chai.request(app).get('/teams/1');
+
+    expect(res.status).to.equal(httpCode.ok);
+    expect(res.body).to.deep.equal(teamMock);
+  })
 });
