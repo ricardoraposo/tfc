@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import MatchService from '../services/match.service';
 
+const internalServerError = 'Internal server error';
+
 export default class MatchController {
   constructor(
     private readonly matchService: MatchService = new MatchService(),
@@ -16,7 +18,7 @@ export default class MatchController {
       return res.status(status).json(data);
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: 'Internal server error' });
+      return res.status(500).json({ message: internalServerError });
     }
   }
 
@@ -27,7 +29,7 @@ export default class MatchController {
       return res.status(status).json(data);
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: 'Internal server error' });
+      return res.status(500).json({ message: internalServerError });
     }
   }
 
@@ -42,7 +44,7 @@ export default class MatchController {
       return res.status(status).json(data);
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: 'Internal server error' });
+      return res.status(500).json({ message: internalServerError });
     }
   }
 }
