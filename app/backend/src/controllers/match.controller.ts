@@ -10,41 +10,35 @@ export default class MatchController {
 
   async getMatches(req: Request, res: Response) {
     const { inProgress } = req.query;
-    try {
-      const { status, data } = await this
-        .matchService
-        .getMatches(inProgress !== undefined ? inProgress === 'true' : undefined);
+    const { status, data } = await this
+      .matchService
+      .getMatches(inProgress !== undefined ? inProgress === 'true' : undefined);
 
-      return res.status(status).json(data);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: internalServerError });
-    }
+    return res.status(status).json(data);
   }
 
   async changeMatchStatus(req: Request, res: Response) {
     const { id } = req.params;
-    try {
-      const { status, data } = await this.matchService.changeMatchStatus(+id);
-      return res.status(status).json(data);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: internalServerError });
-    }
+    const { status, data } = await this.matchService.changeMatchStatus(+id);
+    return res.status(status).json(data);
   }
 
   async changeMatchScores(req: Request, res: Response) {
     const { id } = req.params;
     const { homeTeamGoals, awayTeamGoals } = req.body;
-    try {
-      const { status, data } = await this
-        .matchService
-        .changeMatchScores(+id, { homeTeamGoals, awayTeamGoals });
+    const { status, data } = await this
+      .matchService
+      .changeMatchScores(+id, { homeTeamGoals, awayTeamGoals });
 
-      return res.status(status).json(data);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: internalServerError });
-    }
+    return res.status(status).json(data);
+  }
+
+  async createMatch(req: Request, res: Response) {
+    const { homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals } = req.body;
+    const { status, data } = await this
+      .matchService
+      .createMatch({ homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals });
+
+    return res.status(status).json(data);
   }
 }
