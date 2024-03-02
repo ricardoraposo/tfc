@@ -1,3 +1,4 @@
+import { ChangeMatchScoreDTO } from '../../dto/ChangeMatchScoreDTO';
 import MatchModel from '../../database/models/MatchModel';
 import MatchRepository from './matchRepository';
 import TeamModel from '../../database/models/TeamModel';
@@ -26,5 +27,19 @@ export default class SequelizeMatchRepository implements MatchRepository {
     });
 
     return result;
+  }
+
+  async changeMatchStatus(id: number) {
+    const [affectedCount] = await this.matchModel.update({ inProgress: false }, { where: { id } });
+    return affectedCount;
+  }
+
+  async changeMatchScores(id: number, goals: ChangeMatchScoreDTO) {
+    const { homeTeamGoals, awayTeamGoals } = goals;
+    const [affectedCount] = await this
+      .matchModel
+      .update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+
+    return affectedCount;
   }
 }
