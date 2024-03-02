@@ -1,3 +1,4 @@
+import { CreateMatchDTO } from 'src/dto/CreateMatchDTO';
 import { ChangeMatchScoreDTO } from '../../dto/ChangeMatchScoreDTO';
 import MatchModel from '../../database/models/MatchModel';
 import MatchRepository from './matchRepository';
@@ -41,5 +42,14 @@ export default class SequelizeMatchRepository implements MatchRepository {
       .update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
 
     return affectedCount;
+  }
+
+  async createMatch(craeteMatchDTO: CreateMatchDTO): Promise<MatchModel> {
+    const result = await this.matchModel.create({
+      ...craeteMatchDTO,
+      inProgress: true,
+    });
+
+    return result;
   }
 }
