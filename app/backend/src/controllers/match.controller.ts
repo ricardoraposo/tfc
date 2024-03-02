@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
 import MatchService from '../services/match.service';
 
-const internalServerError = 'Internal server error';
-
 export default class MatchController {
   constructor(
     private readonly matchService: MatchService = new MatchService(),
