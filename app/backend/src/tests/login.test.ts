@@ -65,6 +65,6 @@ describe('Teams integration tests', function() {
     const res = await chai.request(app).post('/login').send(httpRequestBody);
 
     expect(res.status).to.equal(httpCode.unauthorized);
-    expect(res.body).to.deep.equal({ message: 'Invalid parameters' })
+    expect(res.body).to.deep.equal({ message: 'Invalid email or password' })
   })
 });
