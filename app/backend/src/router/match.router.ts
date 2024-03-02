@@ -8,6 +8,8 @@ const matchController = new MatchController();
 
 router.get('/', async (req, res) => matchController.getMatches(req, res));
 
+router.post('/', authMiddleware, async (req, res) => matchController.createMatch(req, res));
+
 router.patch(
   '/:id/finish',
   authMiddleware,
