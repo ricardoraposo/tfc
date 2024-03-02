@@ -19,4 +19,30 @@ export default class MatchController {
       return res.status(500).json({ message: 'Internal server error' });
     }
   }
+
+  async changeMatchStatus(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+      const { status, data } = await this.matchService.changeMatchStatus(+id);
+      return res.status(status).json(data);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+  async changeMatchScores(req: Request, res: Response) {
+    const { id } = req.params;
+    const { homeTeamGoals, awayTeamGoals } = req.body;
+    try {
+      const { status, data } = await this
+        .matchService
+        .changeMatchScores(+id, { homeTeamGoals, awayTeamGoals });
+
+      return res.status(status).json(data);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  }
 }
