@@ -7,23 +7,13 @@ export default class TeamController {
   ) { }
 
   async getTeams(_req: Request, res: Response) {
-    try {
-      const { status, data } = await this.teamService.getTeams();
-      return res.status(status).json(data);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: 'Internal server error' });
-    }
+    const { status, data } = await this.teamService.getTeams();
+    return res.status(status).json(data);
   }
 
   async getTeamById(req: Request, res: Response) {
-    try {
-      const { id } = req.params;
-      const { status, data } = await this.teamService.getTeamById(+id);
-      return res.status(status).json(data);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: 'Internal server error' });
-    }
+    const { id } = req.params;
+    const { status, data } = await this.teamService.getTeamById(+id);
+    return res.status(status).json(data);
   }
 }
