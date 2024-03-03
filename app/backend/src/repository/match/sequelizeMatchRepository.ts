@@ -1,4 +1,4 @@
-import { CreateMatchDTO } from 'src/dto/CreateMatchDTO';
+import { CreateMatchDTO } from '../../dto/CreateMatchDTO';
 import { ChangeMatchScoreDTO } from '../../dto/ChangeMatchScoreDTO';
 import MatchModel from '../../database/models/MatchModel';
 import MatchRepository from './matchRepository';
