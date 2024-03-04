@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcryptjs';
 
-import { signToken } from '../utils/auth';
+import Auth from '../utils/auth';
 import httpCode from '../utils/httpCode';
 import { LoginDTO } from '../dto/LoginDTO';
 import UserRepository from '../repository/user/userRepository';
@@ -21,7 +21,7 @@ export default class LoginService {
       return { status: httpCode.unauthorized, data: { message: 'Invalid email or password' } };
     }
 
-    const token = signToken({ email: user.email, id: user.id });
+    const token = Auth.signToken({ email: user.email, id: user.id });
 
     return { status: httpCode.ok, data: { token } };
   }

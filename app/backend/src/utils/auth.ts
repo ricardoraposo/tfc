@@ -5,18 +5,25 @@ type Payload = {
   email: string;
 };
 
-const secret = process.env.JWT_SECRET || 'segredinhoDoRaposo';
+export default class Auth {
+  private static secret: jwt.Secret = process.env.JWT_SECRET || 'segredinhodaraposo';
 
-export function signToken(payload: Payload) {
-  const token = jwt.sign(payload, secret, { expiresIn: '1d' });
-  return token;
-}
+  private static jwtConfig: jwt.SignOptions = {
+    algorithm: 'HS256',
+    expiresIn: '1d',
+  };
 
-export function verifyToken(token: string) {
-  try {
-    const payload = jwt.verify(token, secret) as Payload;
-    return payload;
-  } catch {
-    return null;
+  static signToken(payload: Payload) {
+    const token = jwt.sign(payload, this.secret, this.jwtConfig);
+    return token;
+  }
+
+  static verifyToken(token: string) {
+    try {
+      const payload = jwt.verify(token, this.secret) as Payload;
+      return payload;
+    } catch {
+      return null;
+    }
   }
 }

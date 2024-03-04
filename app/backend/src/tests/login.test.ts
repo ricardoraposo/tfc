@@ -7,7 +7,7 @@ import UserModel from '../database/models/UserModel';
 
 import { app } from '../app';
 import httpCode from '../utils/httpCode';
-import * as auth from '../utils/auth';
+import Auth from '../utils/auth';
 import { userMock } from './mocks/user.mock';
 
 chai.use(chaiHttp);
@@ -20,7 +20,7 @@ describe('Teams integration tests', function() {
   });
 
   it('should return token and status 200', async function() {
-    sinon.stub(auth, 'signToken').returns('d3f1n1t1v4m3nt3umt0k3n');
+    sinon.stub(Auth, 'signToken').returns('d3f1n1t1v4m3nt3umt0k3n');
     sinon.stub(UserModel, 'findOne').resolves(UserModel.build(userMock));
 
     const httpRequestBody = {
