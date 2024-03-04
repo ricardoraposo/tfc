@@ -1,10 +1,21 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Trybe Futebol Clube
+
+Este é um projeto que simula um sistema de gerenciamento de um campeonato de futebol.
+Projeto feito para conclusão do módulo de Backend na Trybe - Cursos de Tecnologia.
+Foi feito utilizando POO e boas práticas de programação, como TDD, SOLID e Clean Architecture.
+
+## Stack utilizada
+### Back-end
+- Typescript
+- Node.js
+- Express
+- Sequelize
+- Jest
+- JOI
+
+### Front-end
+- Typescript
+- React
+
+obs.: Front-end foi desenvolvido pela Trybe, de forma a testar a API.
+
